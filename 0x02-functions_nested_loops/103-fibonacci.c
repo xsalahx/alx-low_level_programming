@@ -16,7 +16,7 @@ int main(void)
 	for (i = 0; i < 47; i++)
 	{
 		c = a + b;
-		if (c < 4000000)
+		if (c < 4000000 && c % 2 == 0)
 		{
 			n = n + c;
 		}
