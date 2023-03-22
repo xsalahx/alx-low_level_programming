@@ -7,19 +7,19 @@
  */
 int main(void)
 {
-	long int a = 1;
-	long int b = 2;
-	long int c;
+	long double a = 1;
+	long double b = 2;
+	long double c;
 	int i;
 
 	printf("1, 2, ");
-	for (i = 0; i < 47; i++)
+	for (i = 0; i < 95; i++)
 	{
 		c = a + b;
-		printf("%ld, ", c);
+		printf("%.0Lf, ", c);
 		a = b;
 		b = c;
 	}
-	printf("%ld\n", a + b);
+	printf("%.0Lf\n", a + b);
 	return (0);
 }
