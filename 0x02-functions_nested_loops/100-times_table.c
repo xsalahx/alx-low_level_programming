@@ -66,7 +66,7 @@ void print_times_table(int n)
 				m = i * j;
 				if (j != 0)
 				{
-					for (k = 0; k < len(n) - len(m) + 1; k++)
+					for (k = 0; k < 3 - len(m); k++)
 					{
 						_putchar(' ');
 					}
