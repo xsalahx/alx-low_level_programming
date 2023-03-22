@@ -72,7 +72,7 @@ void print_times_table(int n)
 					}
 				}
 				print_number(m);
-				if (j <= n)
+				if (j < n)
 				{
 					_putchar(',');
 					_putchar(' ');
