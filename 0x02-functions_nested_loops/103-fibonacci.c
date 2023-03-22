@@ -23,5 +23,6 @@ int main(void)
 		a = b;
 		b = c;
 	}
+	printf("%d\n", n);
 	return (0);
 }
