@@ -23,8 +23,12 @@ int main(void)
 		if (c1 != 0)
 		{
 			printf("%lu", c1);
+			printf("%09lu, ", c2);
 		}
-		printf("%lu, ", c2);
+		else
+		{
+			printf("%lu, ", c2);
+		}
 		a1 = b1;
 		a2 = b2;
 		b1 = c1;
@@ -36,6 +40,6 @@ int main(void)
 	{
 		printf("%lu", c1);
 	}
-	printf("%lu\n", c2);
+	printf("%09lu\n", c2);
 	return (0);
 }
