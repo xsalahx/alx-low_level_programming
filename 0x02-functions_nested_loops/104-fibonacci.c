@@ -7,19 +7,35 @@
  */
 int main(void)
 {
-	long double a = 1;
-	long double b = 2;
-	long double c;
+	unsigned long int a1 = 0;
+	unsigned long int a2 = 1;
+	unsigned long int b1 = 0;
+	unsigned long int b2 = 2;
+	unsigned long int c1;
+	unsigned long int c2;
 	int i;
 
 	printf("1, 2, ");
 	for (i = 0; i < 95; i++)
 	{
-		c = a + b;
-		printf("%.0Lf, ", c);
-		a = b;
-		b = c;
+		c2 = (a2 + b2) % 1000000000;
+		c1 = (a1 + b1) + (a2 + b2) / 1000000000;
+		if (c1 != 0)
+		{
+			printf("%lu", c1);
+		}
+		printf("%lu, ", c2);
+		a1 = b1;
+		a2 = b2;
+		b1 = c1;
+		b2 = c2;
 	}
-	printf("%.0Lf\n", a + b);
+	c2 = (a2 + b2) % 1000000000;
+	c1 = (a1 + b1) + (a2 + b2) / 1000000000;
+	if (c1 != 0)
+	{
+		printf("%lu", c1);
+	}
+	printf("%lu\n", c2);
 	return (0);
 }
