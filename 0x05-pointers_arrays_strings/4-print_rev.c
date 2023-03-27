@@ -2,7 +2,7 @@
 
 /**
  * print_rev - prints a string, in reverse.
- * @*s: pointer to string (*char)
+ * @s: pointer to string (*char)
  */
 void print_rev(char *s)
 {

@@ -3,20 +3,20 @@
 
 /**
  * swap_char - swaps the values of two chars.
- * @*a: pointer to char a
- * @*b: pointer to char b
+ * @a: pointer to char a
+ * @b: pointer to char b
  */
 void swap_char(char *a, char *b)
 {
-        char c = *a;
+	char c = *a;
 
-        *a = *b;
-        *b = c;
+	*a = *b;
+	*b = c;
 }
 
 /**
  * rev_string - reverses a string
- * @*s: pointer to string (*char)
+ * @s: pointer to string (*char)
  */
 void rev_string(char *s)
 {
