@@ -25,7 +25,7 @@ int _atoi(char *s)
 			}
 			else
 			{
-				if (start == 1)
+				if (start == 1 || *s == '\0')
 				{
 					break;
 				}
