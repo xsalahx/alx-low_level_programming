@@ -21,7 +21,10 @@ char *_strncpy(char *dest, char *src, int n)
 		}
 		else
 		{
-			*(p + i) = *(src + i);
+			if(i < n)
+			{
+				*(p + i) = *(src + i);
+			}
 		}
 	}
 	return (dest);
