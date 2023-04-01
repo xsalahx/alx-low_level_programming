@@ -99,7 +99,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		p++;
 		size_r--;
 	}
-	*p = *p + '0';
+	if (*p != 0)
+		*p = *p + '0';
 	rev_string(r);
 	return (r);
 }
