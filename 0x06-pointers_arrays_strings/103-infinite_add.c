@@ -35,6 +35,24 @@ void rev_string(char *s)
 }
 
 /**
+ * _strlen - function that returns the length of a string
+ * @s: pointer to a string (char)
+ *
+ * Return: Length of the string
+ */
+int _strlen(char *s)
+{
+	int strlen = 0;
+
+	while (*s != '\0')
+	{
+		strlen++;
+		s++;
+	}
+	return (strlen);
+}
+
+/**
  * infinite_add - adds two numbers
  * @n1: number one
  * @n2: number two
@@ -46,32 +64,18 @@ void rev_string(char *s)
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 	char *p = r;
-	int len1 = 0;
-	int len2 = 0;
-	char s = 0;
-	int i;
+	int len1 = _strlen(n1);
+	int len2 = _strlen(n2);
+	int s;
 
-	for (i = 0; i < size_r; i++)
-		*(r + i) = 0;
-	while (*n1 != 0)
-	{
-		len1++;
-		n1++;
-	}
-	while (*n2 != 0)
-	{
-		len2++;
-		n2++;
-	}
-	n1--;
-	n2--;
-
+	for (s = 0; s < size_r; s++)
+		*(r + s) = 0;
+	n1 = n1 + len1 - 1;
+	n2 = n2 + len2 - 1;
 	while (len1 > 0 || len1 > 0)
 	{
 		if (size_r <= 1)
-		{
 			return (0);
-		}
 		if (len1 != 0)
 		{
 			s = *n1 - '0';
@@ -89,13 +93,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		if (s / 10 != 0)
 		{
 			if (size_r <= 2)
-			{
 				return (0);
-			}
-			else
-			{
-				*(p + 1) = s / 10;
-			}
+			*(p + 1) = s / 10;
 		}
 		p++;
 		size_r--;
