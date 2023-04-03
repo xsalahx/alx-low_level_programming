@@ -25,7 +25,7 @@ unsigned int _strspn(char *s, char *accept)
 			}
 			else if (accept[j + 1] == 0)
 			{
-				c = 0;
+				return (l);
 			}
 			j++;
 		}
