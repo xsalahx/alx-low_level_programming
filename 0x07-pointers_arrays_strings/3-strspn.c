@@ -20,11 +20,11 @@ unsigned int _strspn(char *s, char *accept)
 			if (s[i] == accept[j])
 			{
 				c++;
+				l = (l >= c) * l + (l < c) * c;
 				break;
 			}
 			else if (accept[j + 1] == 0)
 			{
-				l = (l >= c) * l + (l < c) * c;
 				c = 0;
 			}
 			j++;
