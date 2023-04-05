@@ -1,5 +1,5 @@
 /**
- * sqrt_hepler - support function for _sqrt_recursion
+ * sqrt_helper - support function for _sqrt_recursion
  * @i: guess
  * @n: number
  *
