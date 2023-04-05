@@ -3,7 +3,7 @@
  * @x: base number
  * @y: power
  *
- * Return : x^y
+ * Return: x^y
  */
 int _pow_recursion(int x, int y)
 {
