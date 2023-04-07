@@ -1,3 +1,3 @@
 #!/bin/bash
-ar rc liball.a $PWD/*.c
-
+gcc -c $PWD/*.c
+ar rc liball.a $PWD/*.o
