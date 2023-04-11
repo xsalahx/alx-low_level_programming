@@ -32,6 +32,8 @@ char *argstostr(int ac, char **av)
 	char *s;
 	int pos = 0;
 
+	if (ac == 0)
+		return (NULL);
 	for (i = 0; i < ac; i++)
 	{
 		l = _strlen_recursion(av[i]);
