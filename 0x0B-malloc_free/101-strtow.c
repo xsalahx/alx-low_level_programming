@@ -1,5 +1,36 @@
+#include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
+#include <stdbool.h>
+
+/**
+ * count_words - Counts the number of words in a string
+ * @str: The string to count words in
+ *
+ * Return: The number of words in the string
+ */
+static int count_words(char *str)
+{
+	int count = 0;
+	bool in_word = false;
+
+	for (; *str != '\0'; ++str)
+	{
+		if (*str != ' ')
+		{
+			if (!in_word)
+			{
+				in_word = true;
+				++count;
+			}
+		}
+		else
+		{
+			in_word = false;
+		}
+	}
+	return (count);
+}
+
 /**
  * strtow - splits a string into words.
  * @str: String
@@ -8,39 +39,40 @@
  */
 char **strtow(char *str)
 {
-	char **s;
-	int i;
-	int begin = -1;
-	int end = -1;
-	int pos = 0;
-	int c = 0;
-	
-	s = (char **) malloc (sizeof(char *));
-	if (!s)
+	int word_count, word_index, i, j, word_length;
+	char **words;
+
+	if (str == NULL || *str == '\0')
 		return (NULL);
-	while (str[pos])
+
+	word_count = count_words(str);
+	words = malloc((word_count + 1) * sizeof(char *));
+	if (words == NULL)
+		return (NULL);
+	word_index = 0;
+	for (i = 0; i < word_count; ++i)
 	{
-		if (begin == -1 && str[pos] != ' ')
+		while (*str == ' ') /* skip spaces */
+			++str;
+		word_length = 0;
+		while (str[word_length] != ' ' && str[word_length] != '\0')
+			++word_length;
+		words[word_index] = malloc((word_length + 1) * sizeof(char));
+		if (words[word_index] == NULL)
 		{
-			begin = pos; 
+			for (j = 0; j < i; ++j) /* free allocated memory */
+				free(words[j]);
+
+			free(words);
+			return (NULL);
 		}
-		else if ((str[pos] == ' ' || str[pos + 1] == 0) && begin != -1)
-		{
-			end = pos;
-			c++;
-			s = (char **) realloc(s, sizeof(char *) * (c + 1));
-			s[c - 1] = (char *) malloc(sizeof(char) * (end - begin + 1 + (str[pos] != ' ')));
-			for (i = 0; begin < end; i++)
-			{
-				s[c - 1][i] = str[begin];
-				begin++;
-			}
-			s[c - 1][end] = '\0';
-			begin = -1;
-			end = -1;
-		}
-		pos++;
+		for (j = 0; j < word_length; ++j)
+			words[word_index][j] = str[j];
+		words[word_index][word_length] = '\0';
+		str += word_length;
+		++word_index;
 	}
-	s[c] = NULL;
-	return (s);
+	words[word_index] = NULL;
+	return (words);
 }
+
