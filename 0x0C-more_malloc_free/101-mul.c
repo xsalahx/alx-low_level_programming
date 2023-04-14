@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int _isdigit(char *str);
@@ -33,7 +32,6 @@ int main(int argc, char *argv[])
 
     result = multiply(argv[1], argv[2], len1, len2);
 
-    printf("%s\n", result);
     if (result[i] == '0')
         i++;
     for (; result[i]; i++)
