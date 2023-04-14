@@ -1,96 +1,131 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
-/**
- * error - Prints "Error" to std output and exit with status 98
- */
-void error(void)
-{
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
-	_putchar('\n');
-	exit(98);
-}
-
-/**
- * _mult - multiplies two string numbers
- * @num1: number one
- * @num2: number two
- * @len1: lenght of num1
- * @len2: lenght of num2
- *
- * Return: num1 * num2
- */
-char *_mul(char *num1, char *num2, int len1, int len2)
-{
-	char *m;
-	int i;
-	int j;
-	int mul;
-	int sum;
-
-	m = (char *) malloc(sizeof(char) * (len1 + len2 + 1));
-	if (!m)
-		error();
-	for (i = 0; i < len1 + len2 + 1; i++)
-		m[i] = 0;
-	for (i = len1 - 1; i >= 0; i--)
-	{
-		for (j = len2 - 1; j >= 0; j--)
-		{
-			mul = (num1[i] - '0') * (num2[i] - '0');
-			sum = (m[i + j + 1] - '0') + mul;
-			m[i + j + 1] = (sum % 10) + '0';
-			m[i + j] += (sum / 10);
-		}
-	}
-	for (i = 0; i < len1 + len2; i++)
-	{
-		if (m[i] != '\0')
-		{
-			m[i] += '0';
-		}
-	}
-	return (m);
-}
+int _isdigit(char *str);
+int _strlen(char *str);
+void print_error(void);
+char *multiply(char *num1, char *num2, int len1, int len2);
 
 /**
  * main - Entry point
- * @argc: agrs count
- * @argv: args vector
+ * @argc: Number of command line arguments
+ * @argv: Array of command line arguments
  *
- * Return: exit status
+ * Return: 0 on success, 98 on error
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int len1 = 0;
-	int len2 = 0;
-	char *mul;
-	int i = 0;
+    char *result;
+    int len1, len2;
+    int i = 0;
 
-	if (argc != 3)
-		error();
-	while (argv[1][len1])
-	{
-		if (argv[1][len1] < '0' || argv[1][len1] > '9')
-			error();
-		len1++;
-	}
-	while (argv[2][len2])
-	{
-		if (argv[2][len2] < '0' || argv[2][len2] > '9')
-			error();
-		len2++;
-	}
-	mul = _mul(argv[1], argv[2], len1, len2);
-	if (mul[0] == 0)
-		i++;
-	for (; i < len1 + len2; i++)
-		_putchar(mul[i]);
-	_putchar('\n');
-	free(mul);
-	return (0);
+
+    if (argc != 3 || !_isdigit(argv[1]) || !_isdigit(argv[2]))
+    {
+        print_error();
+        exit(98);
+    }
+
+
+    len1 = _strlen(argv[1]);
+    len2 = _strlen(argv[2]);
+
+    result = multiply(argv[1], argv[2], len1, len2);
+
+    printf("%s\n", result);
+    if (result[i] == '0')
+        i++;
+    for (; result[i]; i++)
+            _putchar(result[i]);
+
+    _putchar('\n');
+    return (0);
 }
+
+/**
+ * _isdigit - Checks if the given string is composed of digits
+ * @str: String to check
+ *
+ * Return: 1 if str is composed of digits, 0 otherwise
+ */
+int _isdigit(char *str)
+{
+    for (; *str; str++)
+        if (*str < '0' || *str > '9')
+            return (0);
+    return (1);
+}
+
+/**
+ * _strlen - Computes the length of a string
+ * @str: String to compute the length
+ *
+ * Return: Length of the string
+ */
+int _strlen(char *str)
+{
+    int len = 0;
+
+    for (; *str; str++)
+        len++;
+    return (len);
+}
+
+/**
+ * print_error - Prints an error message and exits
+ */
+void print_error(void)
+{
+    _putchar('E');
+    _putchar('r');
+    _putchar('r');
+    _putchar('o');
+    _putchar('r');
+    _putchar('\n');
+}
+
+/**
+ * multiply - Multiplies two numbers given as strings
+ * @num1: First number
+ * @num2: Second number
+ * @len1: Length of the first number
+ * @len2: Length of the second number
+ *
+ * Return: Pointer to the result string
+ */
+char *multiply(char *num1, char *num2, int len1, int len2)
+{
+    int i, j;
+    int n1, n2, mul, carry;
+    char *result;
+
+    result = malloc(len1 + len2 + 1);
+    if (!result)
+    {
+        print_error();
+        exit(98);
+    }
+
+    for (i = 0; i < len1 + len2; i++)
+        result[i] = '0';
+
+    for (i = len1 - 1; i >= 0; i--)
+    {
+        n1 = num1[i] - '0';
+        carry = 0;
+
+        for (j = len2 - 1; j >= 0; j--)
+        {
+            n2 = num2[j] - '0';
+            mul = n1 * n2 + (result[i + j + 1] - '0') + carry;
+            carry = mul / 10;
+            result[i + j + 1] = (mul % 10) + '0';
+        }
+        result[i] += carry;
+    }
+    result[len1 + len2] = '\0';
+
+    return (result);
+}
+
