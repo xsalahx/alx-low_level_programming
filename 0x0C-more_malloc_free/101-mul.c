@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	len2 = _strlen(argv[2]);
 	result = multiply(argv[1], argv[2], len1, len2);
 
-	if (result[i] == '0')
+	while (result[i] == '0')
 		i++;
 	for (; result[i]; i++)
 		_putchar(result[i]);
