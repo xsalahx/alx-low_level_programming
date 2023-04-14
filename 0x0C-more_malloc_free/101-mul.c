@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	for (; result[i]; i++)
 		_putchar(result[i]);
 	_putchar('\n');
+	free(result);
 	return (0);
 }
 
