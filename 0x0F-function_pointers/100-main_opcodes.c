@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	int (*f)(int, char **) = main;
 	unsigned char opcode;
 
-	if (argc != 2 || bytes == 0)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
@@ -28,11 +28,10 @@ int main(int argc, char **argv)
 	{
 		opcode = *(unsigned char *)f;
 		printf("%.2x", opcode);
-		if (i + 1 == bytes)
-			printf("\n");
-		else
+		if (i + 1 != bytes)
 			printf(" ");
 		f++;
 	}
+	printf("\n");
 	return (0);
 }
