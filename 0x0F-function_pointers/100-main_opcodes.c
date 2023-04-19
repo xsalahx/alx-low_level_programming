@@ -11,7 +11,8 @@ int main(int argc, char **argv)
 {
 	int bytes = atoi(argv[1]);
 	int i;
-	unsigned char *f = (unsigned char *) main;
+	int (*f)(int, char **) = main;
+	unsigned char opcode;
 
 	if (argc != 2 || bytes == 0)
 	{
@@ -25,11 +26,13 @@ int main(int argc, char **argv)
 	}
 	for (i = 0; i < bytes; i++)
 	{
-		printf("%.2x", f[i]);
+		opcode = *(unsigned char *)f;
+		printf("%.2x", opcode);
 		if (i + 1 == bytes)
 			printf("\n");
 		else
 			printf(" ");
+		f++;
 	}
 	return (0);
 }
