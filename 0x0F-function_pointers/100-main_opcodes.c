@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	}
 	for (i = 0; i < bytes; i++)
 	{
-		printf("%.2x ", f[i]);
+		printf("%.2x", f[i]);
 		if (i + 1 == bytes)
 			printf("\n");
 		else
