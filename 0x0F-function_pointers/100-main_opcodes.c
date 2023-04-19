@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
 	int bytes = atoi(argv[1]);
 	int i;
-	const unsigned char *f = (unsigned char *) main;
+	unsigned char *f = (unsigned char *) main;
 
 	if (argc != 2 || bytes == 0)
 	{
