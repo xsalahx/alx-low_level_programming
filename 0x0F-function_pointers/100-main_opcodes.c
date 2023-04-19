@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	int i;
 	const unsigned char *f = (unsigned char *) main;
 
-	if (argc != 2)
+	if (argc != 2 || bytes == 0)
 	{
 		printf("Error\n");
 		return (1);
