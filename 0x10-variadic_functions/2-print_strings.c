@@ -14,7 +14,10 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	char *s;
 
 	if (n <= 0)
+	{
+		printf("\n")
 		return;
+	}
 
 	va_start(ap, n);
 	for (i = 0; i < n; i++)
