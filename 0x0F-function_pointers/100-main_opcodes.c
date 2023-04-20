@@ -9,7 +9,7 @@
  */
 int main(int argc, char **argv)
 {
-	int bytes = atoi(argv[1]);
+
 	int i;
 	int (*f)(int, char **) = main;
 	unsigned char opcode;
@@ -19,6 +19,9 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		return (1);
 	}
+
+	int bytes = atoi(argv[1]);
+
 	if (bytes < 0)
 	{
 		printf("Error\n");
