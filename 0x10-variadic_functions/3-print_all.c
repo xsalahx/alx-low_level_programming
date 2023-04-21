@@ -12,6 +12,8 @@ void print_all(const char * const format, ...)
 	char *s;
 	int i = 0, b = 0;
 
+	if (format == NULL)
+		return;
 	va_start(ap, format);
 	while (format[i])
 	{
@@ -38,8 +40,6 @@ void print_all(const char * const format, ...)
 				}
 				printf("%s", s);
 				b = 1;
-				break;
-			default:
 				break;
 		}
 		if (format[++i] != '\0' && b == 1)
