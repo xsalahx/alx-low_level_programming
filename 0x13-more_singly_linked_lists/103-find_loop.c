@@ -25,29 +25,21 @@ int check_node(const listint_t *head, const listint_t *node, int idx)
 }
 
 /**
- * print_listint_safe - prints a listint_t linked list.
- * @head: head node
+ * find_listint_loop - finds the loop in a linked list.
+ * @head: list head
  *
- * Return: number of nodes in the list
+ * Return: node where the loop starts, or NULL if there is no loop
  */
-size_t print_listint_safe(const listint_t *head)
+int find_listint_loop(listint_t *head)
 {
-	size_t size = 0;
-	const listint_t *node = head;
+	int size = 0;
+	listint_t *node = head;
 
 	while (node != NULL)
 	{
 		if (check_node(head, node, size))
-		{
-			printf("-> [%#lx] %d\n", (unsigned long int) node, node->n);
-			exit(98);
-		}
-		else
-		{
-			printf("[%#lx] %d\n", (unsigned long int) node, node->n);
-			node = node->next;
-			size++;
-		}
+			return (node);
+		node = node->next;
 	}
-	return (size);
+	return (node);
 }
