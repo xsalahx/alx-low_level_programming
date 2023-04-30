@@ -39,12 +39,12 @@ size_t print_listint_safe(const listint_t *head)
 	{
 		if (check_node(head, node, size))
 		{
-			printf("-> [%#lx] %d\n", (unsigned long int) node, node->n);
+			printf("-> [%p] %d\n", (void *) node, node->n);
 			exit(98);
 		}
 		else
 		{
-			printf("[%#lx] %d\n", (unsigned long int) node, node->n);
+			printf("[%p] %d\n", (void *) node, node->n);
 			node = node->next;
 			size++;
 		}
