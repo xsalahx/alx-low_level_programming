@@ -28,7 +28,7 @@ int check_node(const listint_t *head, const listint_t *node, int idx)
  * print_listint_safe - prints a listint_t linked list.
  * @head: head node
  *
- * Result: number of nodes in the list
+ * Return: number of nodes in the list
  */
 size_t print_listint_safe(const listint_t *head)
 {
@@ -39,12 +39,12 @@ size_t print_listint_safe(const listint_t *head)
 	{
 		if (check_node(head, node, size))
 		{
-			printf("-> [%#lx] %d\n", (unsigned long int) node , node->n);
+			printf("-> [%#lx] %d\n", (unsigned long int) node, node->n);
 			exit(98);
 		}
 		else
 		{
-			printf("[%#lx] %d\n", (unsigned long int) node , node->n);
+			printf("[%#lx] %d\n", (unsigned long int) node, node->n);
 			node = node->next;
 			size++;
 		}
