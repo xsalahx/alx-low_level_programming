@@ -35,12 +35,14 @@ size_t print_listint_safe(const listint_t *head)
 	size_t size = 0;
 	const listint_t *node = head;
 
+	if (!head)
+		exit(98);
 	while (node != NULL)
 	{
 		if (check_node(head, node, size))
 		{
 			printf("-> [%p] %d\n", (void *) node, node->n);
-			exit(98);
+			return (size);
 		}
 		else
 		{
