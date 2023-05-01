@@ -25,7 +25,6 @@ size_t free_listint_safe(listint_t **h)
 			size++;
 			if (check_node(*h, node, size))
 			{
-				free(node);
 				break;
 			}
 		}
