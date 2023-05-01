@@ -18,14 +18,19 @@ size_t free_listint_safe(listint_t **h)
 	{
 		node  = *h;
 		next = node;
-		while (next != NULL)
+		while (node != NULL)
 		{
-			next = node->next;
-			free(node);
-			node = next;
-			size++;
-			if (check_node(*h, node, size))
+			if (node - node->next > 0)
 			{
+				next = node->next;
+				free(node);
+				node = next;
+				size++;
+			}
+			else
+			{
+				free(node);
+				size++;
 				break;
 			}
 		}
