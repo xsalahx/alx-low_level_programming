@@ -10,14 +10,19 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	int size = 0;
+	size_t size = 0;
 	listint_t *node = head;
 
+	if (!head)
+		return (NULL);
 	while (node != NULL)
 	{
-		if (check_node(head, node, size))
-			return (node);
 		node = node->next;
+		size++;
+		if (check_node(head, node, size))
+		{
+			return (node);
+		}
 	}
-	return (node);
+	return (NULL);
 }
