@@ -11,7 +11,7 @@
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	return (write(STDOUT_FILENO, &c, 1));
 }
 
 /**
@@ -29,7 +29,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	if (filename == NULL)
 		return (0);
-	fptr = fopen(filename, "r");
+	fptr = fopen(filename, O_RDONLY);
 	if (fptr == NULL)
 		return (0);
 	for (; letters > 0; letters--)
