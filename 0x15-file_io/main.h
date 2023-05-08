@@ -1,5 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stdlib.h>
+#define O_RDONLY         00
+#define O_WRONLY         01
+#define O_RDWR           02
 
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
