@@ -4,6 +4,10 @@
 #define O_RDONLY         00
 #define O_WRONLY         01
 #define O_RDWR           02
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
