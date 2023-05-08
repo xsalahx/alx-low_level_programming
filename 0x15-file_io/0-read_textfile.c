@@ -1,18 +1,9 @@
 #include "main.h"
 #include <stdio.h>
 #include <unistd.h>
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(STDOUT_FILENO, &c, 1));
-}
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /**
  * read_textfile - reads a text file and prints it to the POSIX standard output
@@ -23,23 +14,24 @@ int _putchar(char c)
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int c;
-	int count = 0;
-	FILE *fptr;
+	int fd;
+	int count;
+	char *buf;
 
+	buf = malloc(letters);
+	if (buf == NULL)
+		return (0);
 	if (filename == NULL)
 		return (0);
-	fptr = fopen(filename, O_RDONLY);
-	if (fptr == NULL)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (0);
-	for (; letters > 0; letters--)
-	{
-		c = fgetc(fptr);
-		if (c != -1)
-			count += _putchar(c);
-		else
-			break;
-	}
-	fclose(fptr);
+	count = read(fd, buf, letters);
+	if (count == -1)
+		return (0);
+	count = write(STDOUT_FILENO, buf, count);
+	if (count == -1)
+		return (0);
+	close(fd);
 	return (count);
 }
